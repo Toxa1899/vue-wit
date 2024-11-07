@@ -16,7 +16,7 @@ export default createStore({
   actions: {
     fetchLogData({ commit }) {
       const accessToken = localStorage.getItem('accessToken');
-      fetch("http://34.141.16.56/api/v1/account/userinfo/", {
+      fetch("http://34.40.8.20/api/v1/account/userinfo/", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,

@@ -117,7 +117,7 @@ function loginUser() {
     password: password.value,
   };
 
-  fetch("http://34.141.16.56/api/v1/account/login/", {
+  fetch("http://34.40.8.20/api/v1/account/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -131,34 +131,16 @@ function loginUser() {
       return response.json();
     })
     .then((data) => {
+      console.log("Success:", data);
       localStorage.setItem("refreshToken", data.refresh);
       localStorage.setItem("accessToken", data.access);
 
       
       const accessToken = localStorage.getItem("accessToken");
 
-      fetch("http://34.141.16.56/api/v1/account/userinfo/", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => store.commit("logDataAdd", data))
-        .catch((error) => console.error("Error:", error));
+      
 
-
-
-      if (data.access) {
-        router.push("/dashboard");
-      } else {
-        alert("Authentication failed.");
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert("Failed to log in.");
+ 
     });
 }
 
